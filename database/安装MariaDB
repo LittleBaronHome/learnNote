@@ -1,0 +1,31 @@
+卸载原有MariaDB
+	1、卸载mariadb：yum remove mariadb
+	2、删除配置文件：rm -f /etc/my.cnf
+	3、删除数据目录：rm -rf /var/lib/mysql/
+
+设置yum源  vim /etc/yum.repos.d/mariadb.repo
+	[mariadb]
+	name = MariaDB
+	baseurl = http://yum.mariadb.org/10.2.24/centos7-amd64/
+	gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+	gpgcheck= 0
+清空yum缓存
+	yun clean all
+
+安装
+	yum install MariaDB-server MariaDB-client -y
+	
+初始化设置
+	mysql_secure_installation
+	
+给root用户赋远程权限
+	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'IDENTIFIED BY 'qiaojiyuan' WITH GRANT OPTION;
+	flush privileges; -- 刷新权限表
+	
+常用命令
+	systemctl start mariadb  #启动MariaDB
+	systemctl stop mariadb  #停止MariaDB
+	systemctl restart mariadb  #重启MariaDB
+	systemctl enable mariadb  #设置开机启动
+	mysql -u root -p 连接数据库
+	
