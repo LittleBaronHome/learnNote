@@ -1,0 +1,15 @@
+在github上创建一个项目，复制项目路径
+
+进入项目根目录，打开git bash
+
+git init
+
+git add .
+
+git commit -m “CommitInfo”
+
+git remote add origin git@github.com:***/***.git
+
+git pull --rebase origin master
+
+git push -u origin master
