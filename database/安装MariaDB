@@ -13,13 +13,14 @@
 	yun clean all
 
 安装
-	yum install MariaDB-server MariaDB-client -y
+	yum install MariaDB-server MariaDB-client --disablerepo=AppStream
 	
 初始化设置
+        systemctl start mariadb
 	mysql_secure_installation
 	
 给root用户赋远程权限
-	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'IDENTIFIED BY 'qiaojiyuan' WITH GRANT OPTION;
+	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'IDENTIFIED BY 'root密码' WITH GRANT OPTION;
 	flush privileges; -- 刷新权限表
 	
 常用命令
