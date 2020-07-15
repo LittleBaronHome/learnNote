@@ -30,3 +30,7 @@
 	systemctl enable mariadb  #设置开机启动
 	mysql -u root -p 连接数据库
 	
+修改root密码
+	set password for root@localhose=password('');
+	set password for root@'%'=password('');
+	
