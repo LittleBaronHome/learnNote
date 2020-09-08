@@ -23,9 +23,7 @@ _斜体abc_
 下标<sub>abc</sub>  
 <big>大号字体</big>  
 <small>小号字体</small>  
-补充说明[^补充]
 
-[^补充]: 这是补充说明
 ***
 * 无序列表
     * 嵌套列表
@@ -58,14 +56,6 @@ public static void main(String[] args) {
     System.out.println("这是段java代码片段");
 }
 ```
-代码区块使用 4 个空格或者一个制表符（Tab 键）
-
-​    <?java
-​    public static void main(String[] args) {
-​        System.out.println("这是段java代码片段");
-​    }
-​    
-
 ***
 [百度](https://www.baidu.com)  
 百度 <https://www.baidu.com>
