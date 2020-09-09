@@ -8,7 +8,7 @@ Redis是一个开源的(BSD许可)，**内存**中的数据结构存储，用作
 
 ## 	安装
 
-​		**本文采用5.0.9版本**
+**本文采用5.0.9版本**
 
 ### linux安装
 
@@ -73,7 +73,7 @@ not connected> exit
 > **DockerHub: https://hub.docker.com/_/redis**
 
 #### 拉取redis镜像
-​	`docker pull redis:5.0.9`
+	`docker pull redis:5.0.9`
 
 #### 启动服务
 
@@ -115,7 +115,7 @@ root@6f9ae5d1f5ce:/data#
 
 **redis官方性能测试工具**
 
-​		**`redis-benchmark [option] [option value]`**
+		**`redis-benchmark [option] [option value]`**
 
 **注意**：该命令是在 redis 的目录下执行的，而不是 redis 客户端的内部指令。
 
@@ -187,7 +187,7 @@ redis-benchmark -c 100 -n 100000
 
 ## Redis数据库
 
-1. redis默认有16个数据库（配置文件中可改），默认使用第0个，可通过select index改变
+redis默认有16个数据库（配置文件中可改），默认使用第0个，可通过select index改变
 
 ```bash
 root@6f9ae5d1f5ce:/data# redis-cli
@@ -197,8 +197,7 @@ OK
 # 查看当前数据库使用量
 127.0.0.1:6379[3]> dbsize
 (integer) 0
-# 查看当前数据库key列表
-127.0.0.1:6379[3]> keys *
+
 # 清空当前数据库
 127.0.0.1:6379[3]> flushdb
 OK
@@ -207,6 +206,8 @@ OK
 OK
 ```
 
+
+
 ## Redis数据类型
 
 > 官网文档： It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes with radius queries and streams. 
@@ -214,4 +215,71 @@ OK
 **它支持的数据结构有字符串、散列、列表、集合、使用范围查询的排序集合、位图、基数统计、使用半径查询的地理空间索引和流。**
 
 ### Redis-Key
+
+```bash
+# 查看当前数据库key列表
+127.0.0.1:6379> keys *
+# 查看当前数据库key是否存在
+127.0.0.1:6379> exists name
+(integer) 1
+# 移除当前数据库key
+127.0.0.1:6379> move name
+(integer) 1
+# 为当前数据库key设置有效期（秒）
+127.0.0.1:6379> expire name 10
+(integer) 1
+# 查看当前数据库key剩余有效期（秒）
+127.0.0.1:6379> ttl name
+(integer) 10
+# 查看当前数据库key值类型
+127.0.0.1:6379> type name
+string
+```
+
+### String
+
+``` bash
+# 设置值
+127.0.0.1:6379> set name he
+OK
+# 获取值
+127.0.0.1:6379> get name
+"he"
+# 追加值
+127.0.0.1:6379> append name llo
+(integer) 5
+127.0.0.1:6379> get name
+"hello"
+
+# 获取字符串长度
+127.0.0.1:6379> strlen name
+(integer) 5
+# 截取字符串
+127.0.0.1:6379> getrange name 0 3
+"hell"
+# 替换字符串
+127.0.0.1:6379> setrange name 1 xx
+(integer) 5
+127.0.0.1:6379> get name
+"hxxlo"
+
+# 当前值+1
+127.0.0.1:6379> set views 0
+OK
+127.0.0.1:6379>  incr views
+(integer) 1
+# 当前值-1
+127.0.0.1:6379> decr views
+(integer) 0
+# 当前值+10
+127.0.0.1:6379> incrby views 10
+(integer) 10
+# 当前值-10
+127.0.0.1:6379> decrby views 10
+(integer) 0
+```
+
+
+
+
 
